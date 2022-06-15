@@ -1,2 +1,31 @@
 <h1>Site#index</h1>
 <p>Find me in app/views/site/index.html.erb</p>
+
+<%= form_with url: "/search" do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<%= form_with model: User.new do |form| %>
+  <div>
+    <%= form.label :name, "Name:" %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :bday, "Birthday:" %>
+    <%= form.date_field :bday %>
+  </div>
+  <div>
+    <%= form.label :city, "City:" %>
+    <%= form.select :city, [["Berlin", "BE"], ["San Francisco", "SF"], ["Timisoara", "TM"]] %>
+  </div>
+  <div>
+    <%= form.label :phone, "Phone:" %>
+    <%= form.phone_field :phone %>
+  </div>
+  <div>
+    <%= form.label :food_id, "Foods:" %>
+    <%= form.collection_select :food_id, Food.all, :id, :name %>
+  </div>
+<% end %>
